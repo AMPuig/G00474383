@@ -1,13 +1,18 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>favourites</ion-title>
+    <ion-title>Favourite Movies</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToHome()">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">favourites</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div *ngFor="let movie of favourites">
+    <img [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path">
+    <p>{{ movie.title }}</p>
+    <ion-button (click)="goToMovieDetails(movie)">DETAILS</ion-button>
+  </div>
 </ion-content>
