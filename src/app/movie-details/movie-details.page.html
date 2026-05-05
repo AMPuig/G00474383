@@ -1,39 +1,13 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>{{ movie?.title }}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="goToHome()">
-        <ion-icon name="home"></ion-icon>
-      </ion-button>
-      <ion-button (click)="goToFavourites()">
-        <ion-icon name="heart"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-title>movie-details</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <p>{{ movie?.overview }}</p>
-
-  <ion-button expand="full" (click)="toggleFavourite()">
-    {{ isFavourite ? 'REMOVE FROM FAVOURITES' : 'ADD TO FAVOURITES' }}
-  </ion-button>
-
-  <h3>Cast</h3>
-  <div *ngFor="let person of cast" (click)="goToPerson(person)" style="cursor:pointer; display:flex; align-items:center; margin-bottom:10px;">
-    <img [src]="person.profile_path ? 'https://image.tmdb.org/t/p/w200' + person.profile_path : 'assets/no-image.png'" style="width:80px; margin-right:10px;">
-    <div>
-      <p>{{ person.character }}</p>
-      <p>{{ person.name }}</p>
-    </div>
-  </div>
-
-  <h3>Crew</h3>
-  <div *ngFor="let person of crew" (click)="goToPerson(person)" style="cursor:pointer; display:flex; align-items:center; margin-bottom:10px;">
-    <img [src]="person.profile_path ? 'https://image.tmdb.org/t/p/w200' + person.profile_path : 'assets/no-image.png'" style="width:80px; margin-right:10px;">
-    <div>
-      <p>{{ person.job }}</p>
-      <p>{{ person.name }}</p>
-    </div>
-  </div>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">movie-details</ion-title>
+    </ion-toolbar>
+  </ion-header>
 </ion-content>
