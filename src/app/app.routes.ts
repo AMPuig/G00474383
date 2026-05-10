@@ -1,5 +1,6 @@
-import { Routes } from '@angular/router';
+﻿import { Routes } from '@angular/router';
 
+// App routes routes for lazy loading of components and navigation
 export const routes: Routes = [
   {
     path: 'home',
@@ -7,7 +8,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'home', // Redirect to home by default
     pathMatch: 'full',
   },
   {

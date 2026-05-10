@@ -1,13 +1,41 @@
-<ion-header [translucent]="true">
+﻿<ion-header>
   <ion-toolbar>
-    <ion-title>details</ion-title>
+    <ion-title>{{ person?.name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToHome()">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+      <ion-button (click)="goToFavourites()">
+        <ion-icon name="heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <img *ngIf="person?.profile_path"
+    [src]="'https://image.tmdb.org/t/p/w200' + person.profile_path">
+  <p *ngIf="!person?.profile_path">No image</p>
+
+  <p *ngIf="person?.birthday">{{ person.birthday }}
+    <span *ngIf="person?.deathday"> - {{ person.deathday }}</span>
+  </p>
+
+  <p *ngIf="person?.place_of_birth">{{ person.place_of_birth }}</p>
+
+  <div *ngIf="person?.also_known_as?.length > 0">
+    <p>Also Known As:</p>
+    <p *ngFor="let aka of person.also_known_as">{{ aka }}</p>
+  </div>
+
+  <p>{{ person?.biography }}</p>
+
+  <h3>Other Movies</h3>
+  <div *ngFor="let movie of movies" (click)="goToMovieDetails(movie)"
+    style="cursor:pointer; display:flex; align-items:center; margin-bottom:10px;">
+    <img *ngIf="movie.poster_path"
+      [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path"
+      style="width:80px; margin-right:10px;">
+    <p>{{ movie.title }}</p>
+  </div>
 </ion-content>

@@ -1,20 +1,30 @@
-<ion-header [translucent]="true">
+﻿<!--Header with student number and favourites button-->
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>G00474383</ion-title>
+    <ion-buttons slot="end">
+      <!--Icon button to navigate to favourites page-->
+      <ion-button (click)="goToFavourites()">
+        <ion-icon name="heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <!--Search bar movie name-->
+  <ion-item>
+    <ion-input [(ngModel)]="searchTerm" placeholder="Movie Name" label="Search"></ion-input>
+  </ion-item>
+  <!--Search button--> 
+  <ion-button expand="full" (click)="search()">SEARCH</ion-button>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <!--Title of the page and list of movies -->
+
+  <ion-list>
+    <ion-item *ngFor="let movie of movies" (click)="goToMovieDetails(movie)" button>
+      <ion-img slot="start" [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path" style="width:100px"></ion-img>
+      <ion-label class="ion-text-wrap">{{ movie.overview }}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
